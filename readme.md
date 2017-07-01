@@ -35,7 +35,8 @@
 
     composer config -g repo.packagist composer https://packagist.phpcomposer.com
     
-到这里我们的composer真正的安装完成了，下面开始安装Laravel
+到这里我们的composer真正的安装完成了，下面开始安装Laravel        
+
 ###　三、安装 Laravel
 3.1、 使用 Composer 下载 Laravel 安装包
 
