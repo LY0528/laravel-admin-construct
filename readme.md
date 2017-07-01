@@ -1,5 +1,5 @@
-#### 本文只针对windows用户
-** 重要** 在安装phpStudy的时候，安装路径不要有中文，安装的文件夹不要有空格；否则，在启动apache或者mySql的时候会出现失败的情况。
+## 本文只针对windows用户
+** 重要** 在安装phpStudy的时候，安装路径不要有中文，安装的文件夹不要有空格；否则，在启动Apache或者MySQL的时候会出现失败的情况。
 ### 一、安装composer并配置php环境变量
 1.1、 Laravel 使用 Composer 来管理代码依赖。所以，在使用 Laravel 之前，请先确认你的电脑上安装了 Composer。如果没有安装，请按照一下步骤安装。        
 1.2、 下载并且运行[Composer-Setup.exe](https://getcomposer.org/Composer-Setup.exe),它将安装最新版本的 Composer。双击开始安装：
@@ -102,28 +102,34 @@ hosts文件的路径:C:\Windows\System32\drivers\etc
 
 ### 五、如何修改laravel-admin默认样式
 一、修改laravel-admin模板字体图标         
-1.如何修改laravel-admin模板自带字体图标？
 
     由于字体图标都有一个为fa的class类名。我们只需要在public/packages/admin/font-awesome/css和vendor/encore/laravel-admin/assets
     /font-awesome/css文件夹下的css文件中给fa类名下增加一个color属性即可修改所有字体图标的颜色。若是修改某一个字体图标的颜色，我们只需
     要找到这个字体图标对应的class类名，以同样的方法在其class类名下增加color属性即可。这种方法改动较大，不推荐这种做法。        
-二、在laravel-admin模板中自定义皮肤   
-1.如何给登录界面增加背景图片？ 
-
-    首先，同样在public/admin/AdminLTE/dist/css/AdminLTE.min.css文件中找到login-page和register-page类名(类名若是有变，就打开调试工
-    具查看正确的类名)，把background的属性值换成你想要的背景图片的路径，并设置background-size:cover属性。修改登录页面中的其他样式也
-    是以同样的方法进行。            
-2.如何修改模板登录界面的标题？  
-
-    修改config/admin.php文件中的name项即可           
-3.如何修改模板的logo和mini-logo标题？  
-
-    修改config/admin.php文件中logo项和mini-logo项即可     
-4.如何修改用户名头像？     
-
-    单击右上角头像或者用户名，选择设选项，在里面可以修改用户名和头像，还有密码         
-5.如何定义自己的皮肤？
+二、在laravel-admin模板中自定义皮肤 
 
     首先在public/admin/AdminLTE/dist/css/skins文件夹下新建自己的皮肤名称，后缀css，在css文件中定义一些class类名的background样式(如：
     logo、navbar、main-sidebar、sidebar-menu、active、treeview-menu。若是class类名有变，那就打开调试工具查看正确的类名)。然后在
-    config/admin.php中把当前皮肤的名修改成你自己定义的皮肤名。然后刷新，就会发现自定义的皮肤已经生效。 
+    config/admin.php中把当前皮肤的名修改成你自己定义的皮肤名。然后刷新，就会发现自定义的皮肤已经生效 
+三、在laravel-admin中增加自己的样式        
+3.1 给登录页面增加背景图片
+
+    在public/admin/AdminLTE/dist/css文件夹下建立一个css文件，（这里以myCss.css为例，以后我改动的css样式都会放在这里）。打开调试工，
+    我们可以发现定义登录页面背景图片的类名是login-page和register-page类名，所以我们可以这样定义：
+    .login-page, .register-page {
+        background: url(../img/beij.jpg);
+        background-size: cover;
+    }
+    这里我是把背景图片放在了public/admin/AdminLTE/dist/img文件夹下。 
+    到这里还没有结束，我们还要把myCss.css文件引入到index.php和login.php文件中
+    其他样式也是以同样的方法进行定义，若是新定义属性的权重没有模板自带的高，就在属性值后面加上!important
+
+3.2 如何修改模板登录界面的标题？  
+
+    修改config/admin.php文件中的name项即可           
+3.3 如何修改模板的logo和mini-logo标题？  
+
+    修改config/admin.php文件中logo项和mini-logo项即可     
+3.4 如何修改用户名头像？     
+
+    单击右上角头像或者用户名，选择设选项，在里面可以修改用户名和头像，还有密码         
