@@ -3,34 +3,34 @@
 ### 一、安装composer并配置php环境变量
 1.1、 Laravel 使用 Composer 来管理代码依赖。所以，在使用 Laravel 之前，请先确认你的电脑上安装了 Composer。如果没有安装，请按照一下步骤安装。        
 1.2、 下载并且运行[Composer-Setup.exe](https://getcomposer.org/Composer-Setup.exe),它将安装最新版本的 Composer。双击开始安装：
-<img src="./images/01.png" height="280" width="350">  
+<img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/01.png" height="280" width="350">  
 这里会自动搜索 php.exe 路径, 如果找不到，则手动添加路径。点击next直到安装结束  
 1.3、 添加php.exe环境变量，[这里以win10系统为例](http://jingyan.baidu.com/article/ad310e80d2ebe31848f49e59.html)：  
 1.3.1、 右键开始菜单--选择控制面板  
-<img src="images/02.png" width="130" height="240">  
+<img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/02.png" width="130" height="240">  
 1.3.2、 切换到大图标模式   
-<img src="images/03.png" width="480" height="250">  
+<img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/03.png" width="480" height="250">  
 1.3.3、 选择系统    
-<img src="images/04.png" width="560" height="330">      
+<img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/04.png" width="560" height="330">      
 1.3.4、 选择高级系统        
-<img src="images/05.png" width="550" height="160">       
+<img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/05.png" width="550" height="160">       
 1.3.5、 点击环境变量        
 1.3.6、 点击系统变量下面的新建        
-<img src="images/06.png" width="320" height="280">      
+<img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/06.png" width="320" height="280">      
 1.3.7、 输入环境变量信息      
-<img src="images/07.png" width="420" height="100">      
+<img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/07.png" width="420" height="100">      
 1.3.8、 点击确定保存，打开cmd 输入 php -v 看是否配置正确 我这里是7.0.12       
-<img src="images/08.png">
+<img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/08.png">
 ### 二、开启openssl扩展
 2.1、 在PHP目录下，打开php.ini文件，去掉extension=php_openssl.dll前面的分号(;)   
-<img src="images/09.png" width="500" height="150">      
+<img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/09.png" width="500" height="150">      
 2.2、 下载[composer.phar](https://getcomposer.org/composer.phar)并放到PHP目录下，在PHP目录下新建composer.cmd， 内容为
 
     @php "%~dp0composer.phar" %*
 
-<img src="images/10.png" width="320" height="150">      
+<img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/10.png" width="320" height="150">      
 2.3、 保存后，运行这个文件，打开cmd，输入 composer -V(是大写的哟)  查看是否成功
-<img src="images/11.png">  
+<img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/11.png">  
 2.4、 国内网速有限 可以安装 Packagist 为国内镜像
 
     composer config -g repo.packagist composer https://packagist.phpcomposer.com
@@ -41,12 +41,16 @@
 
     composer global require "laravel/installer"
 
-请确定你已将 ~/.composer/vendor/bin 路径加到 PATH，只有这样系统才能找到 laravel 的执行文件                    
+请确定你已将 
+        
+        ~/.composer/vendor/bin
+
+路径加到 PATH，只有这样系统才能找到 laravel 的执行文件                    
 3.2、 如何添加到PATH？   
 3.2.1、 首先让我们回到1.2.5步骤，然后找到PATH选项并双击    
-<img src="images/12.png" width="300" height="300">      
+<img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/12.png" width="300" height="300">      
 3.2.2、 点击右边的新建，把你的~/.composer/vendor/bin路径复制粘贴进去，点击确定保存就可以了           
-<img src="images/13.png" width="300" height="300">   
+<img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/13.png" width="300" height="300">   
 
 ### 四、安装laravel-admin并配置
 1.新建一个项目
