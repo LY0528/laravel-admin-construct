@@ -24,14 +24,14 @@
 ### 二、开启openssl扩展
 2.1、 在PHP目录下，打开php.ini文件，去掉extension=php_openssl.dll前面的分号(;)   
 <img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/09.png" width="500" height="150">      
-2.2、 下载[composer.phar](https://getcomposer.org/composer.phar)并放到PHP目录下，在PHP目录下新建composer.cmd， 内容为
+2.2、 下载[composer.phar](https://getcomposer.org/composer.phar)并放到PHP目录下，在PHP目录下新建composer.cmd文件， 内容为
 
     @php "%~dp0composer.phar" %*
 
 <img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/10.png" width="320" height="150">      
 2.3、 保存后，运行这个文件，打开cmd，输入 composer -V(是大写的哟)  查看是否成功
 <img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/11.png">  
-2.4、 国内网速有限 可以安装 Packagist 为国内镜像
+2.4、 国内网速有限，可以安装 Packagist 为国内镜像
 
     composer config -g repo.packagist composer https://packagist.phpcomposer.com
     
@@ -44,7 +44,7 @@
 
 请确定你已将 
         
-        ~/.composer/vendor/bin
+    ~/.composer/vendor/bin
 
 路径加到 PATH，只有这样系统才能找到 laravel 的执行文件                    
 3.2、 如何添加到PATH？   
@@ -54,95 +54,98 @@
 <img src="https://github.com/LY0528/laravel-admin-construct/raw/master/images/13.png" width="300" height="300">   
 
 ### 四、安装laravel-admin并配置
-1.新建一个项目
+1、新建一个项目
     
-        laravel new blog //blog是项目名
-2.切换到项目目录，在项目目录的命令行中输入
+    laravel new blog //blog是项目名
+2、切换到项目目录，在项目目录的命令行中输入
 
-     composer require encore/laravel-admin "1.4.*"
+    composer require encore/laravel-admin "1.4.*"
 
-3.在项目目录的.env文件中进行配置
+3、在项目目录的.env文件中进行配置
 
-        DB_DATABASE=blog //项目名称
-        DB_USERNAME=root //数据库用户名
-        DB_PASSWORD=     //数据库密码
-4.然后在config/app.php加入ServiceProvider:    
+    DB_DATABASE=blog //项目名称
+    DB_USERNAME=root //数据库用户名
+    DB_PASSWORD=     //数据库密码
+4、然后在config/app.php加入ServiceProvider:    
 
     Encore\Admin\Providers\AdminServiceProvider::class
-5.然后运行下面的命令来发布资源：
+5、然后运行下面的命令来发布资源：
 
     php artisan vendor:publish --tag=laravel-admin
 
-6.在文件config/admin.php中，可以在里面修改安装的地址、数据库连接、以及表名。   
+6、在文件config/admin.php中，可以在里面修改安装的地址、数据库连接、以及表名。 
 然后运行下面的命令完成安装：
 
     php artisan admin:install
-7.接下来还需要配置一些文件：         
-7.1 在hosts文件中最后一行添加：
+7、接下来还需要配置一些文件：         
+7.1、在hosts文件中最后一行添加：
 
-        127.0.0.1  blog.com //我的项目文件夹名称是blog
+    127.0.0.1  blog.com //我的项目文件夹名称是blog
 
 hosts文件的路径:C:\Windows\System32\drivers\etc      
-7.2 打开Apache中的vhosts-conf配置文件（我用的是phpStudy），添加：
+7.2、打开Apache中的vhosts-conf配置文件（我用的是phpStudy），添加：
 
-        <VirtualHost blog.com:80> //记得换成你的文件名称和端口号
-            DocumentRoot "F:\phpStudy\WWW\blog\public" //记得换成你的文件路径
-            ServerName blog.com
-        </VirtualHost>
+    <VirtualHost blog.com:80> //记得换成你的文件名称和端口号
+        DocumentRoot "F:\phpStudy\WWW\blog\public" //记得换成你的文件路径
+        ServerName blog.com
+    </VirtualHost>
 
-8.启动你的laravel-admin后台管理系统      
+8、启动你的laravel-admin后台管理系统      
 8.1、第一种方法：      
     打开你的phpStudy，启动Apache和MySQL之后，打开浏览器，在浏览器中输入
 
-        blog.com/admin
+    blog.com/admin
 8.2、第二种方法：      
 
-        使用php artisan  serve开启服务，启动服务后，会在命令行中生成一个端口号，在浏览器打开 http://  localhost:生成的端口号/admin
-         ,使用用户名 admin 和密码 admin登陆.
+    使用php artisan  serve开启服务，启动服务后，会在命令行中生成一个端口号，在浏览器打开 http://  localhost:生成的端口号/admin
+     ,使用用户名 admin 和密码 admin登陆.
 
 ### 五、如何修改laravel-admin默认样式
-一、修改laravel-admin模板字体图标         
+#### 一、修改laravel-admin模板字体图标         
 
-        由于字体图标都有一个为fa的class类名。我们只需要在public/packages/admin/  font-awesome/css和vendor/encore/laravel-admin
-        /assets/font-awesome/css文件夹下的css文件中给fa类名下增加一个color属性即可修改所有 字体图标的颜色。若是修改某一个字体图标
-        的颜色，我们只需要找到这个字体图标对应的class类名，以同样的方法在其class类名下增加color属性即可。这种方法改动较大，不推荐
-        这种做法。        
-二、在laravel-admin模板中自定义皮肤        
-2.1 首先在public/admin/AdminLTE/dist/css/skins文件夹下新建自己的皮肤文件名，后缀css，把其其中一个皮肤所有的样式copy一份粘贴过来。        
-2.2 把复制来的css文件中所有的皮肤类名全局替换成自己的皮肤类名，如：
+    由于字体图标都有一个为fa的class类名。我们只需要在public/packages/admin/  font-awesome/css和vendor/encore/laravel-admin
+    /assets/font-awesome/css文件夹下的css文件中给fa类名下增加一个color属性即可修改所有 字体图标的颜色。若是修改某一个字体图标的
+    颜色，我们只需要找到这个字体图标对应的class类名，以同样的方法在其class类名下增加color属性即可。这种方法改动较大，不推荐这种
+    做法。        
+#### 二、在laravel-admin模板中自定义皮肤        
+2.1、首先在public/admin/AdminLTE/dist/css/skins文件夹下新建自己的皮肤文件名，后缀css，把其其中一个皮肤所有的样式复制一份粘贴过来。        
+2.2、把复制来的css文件中所有的皮肤类名全局替换成自定义的皮肤类名，如：
 
-        我复制的是skin-blue.min.css文件，这个文件的皮肤类名就是skin-blue，我使用全局替换的方法把skin-blue类名替换成skin-myself
+    复制的是skin-blue.min.css文件，这个文件的皮肤类名就是skin-blue，然后使用全局替换的方法把skin-blue类名替换成skin-myself
 
-2.3 接下来就是设计你想要的样式，如：
+2.3、接下来定义属于自己的皮肤，如：
 
-        想要修改顶部navbar的背景颜色，只需要找到定义此样式的类名并修改其属性值即可：
-        .skin-myself .main-header .navbar {
-            background-color: #1f262e;
-        }
-        其他样式类名有但不限于logo、main-sidebar、sidebar-menu、active、treew-menu
+    想要修改顶部navbar的背景颜色，只需要找到定义此样式的类名，背景样式是由.skin-myself .main-header .navbar控制；所以只需在其
+    类名下修改属性值即可：
+    .skin-myself .main-header .navbar {
+        background-color: #1f262e;
+    }
+    其他样式类名如：logo、main-sidebar、sidebar-menu、active、treew-menu，修改方法如法炮制。 
 
-2.4 如何使你的皮肤生效
+2.4、如何使你的皮肤生效
 
-        以上步骤完成之后，还需要在config/admin.php文件中把当前皮肤名替换成自己定义的皮肤名。然后刷新，就会发现自定义的皮肤已经生效。 
-三、在laravel-admin中增加自己的样式        
-3.1 给登录页面增加背景图片及修改其他样式
+    完成上述步骤之后，还需要在config/admin.php文件skin选项中把皮肤名替换成自定义皮肤名。然后刷新，就会发现自定义的皮肤已经生效。 
+#### 三、在laravel-admin中增加自己的样式        
+3.1、给登录页面增加背景图片及修改其他样式
 
-        在public/admin/AdminLTE/dist/css文件夹下建立一个css文件，（这里以myCss.css为例，以后我改动的css样式都会放在这里）。打
-        开调试工具，我们可以发现定义登录页面背景图片的类名是login-page和register-page类名，所以我们可以这样定义：
-        .login-page, .register-page {
-            background: url(../img/beij.jpg);
-            background-size: cover;
-        }
-        这里我是把背景图片放在了public/admin/AdminLTE/dist/img文件夹下。 
-        到这里还没有结束，我们还要把myCss.css文件引入到index.php和login.php文件中
-        其他样式也是以同样的方法进行定义，若是新定义属性的权重没有模板自带的高，就在属性值后面加上!important
+    在public/admin/AdminLTE/dist/css文件夹下建立一个新的css文件，（这里以myCss.css为例，改动的css样式都会放在这里）。打开调试
+    工具，可以发现定义登录页面背景图片的类名是login-page和register-page，于是我们可以这样定：
+    .login-page, .register-page {
+        background: url(../img/beij.jpg);
+        background-size: cover;
+    }
+    这里自定义背景图片放在了public/admin/AdminLTE/dist/img文件夹下。 
+    然后，要把myCss.css文件引入到index.php和login.php文件中
+    刷新页面就会发现自定义的背景图片已经生效。
+    其他样式也是以同样的方法定义，若是定义属性不起作用，检查是否由于权重引起的。若是，就在属性值后面加上!important；若不是，可能
+    其样式不是当前的类名控制。具体情况要具体分析。
 
-3.2 如何修改模板登录界面的标题？  
+3.2、如何修改模板登录界面的标题？  
 
     修改config/admin.php文件中的name项即可           
-3.3 如何修改模板的logo和mini-logo标题？  
+3.3、如何修改模板的logo和mini-logo标题？  
 
     修改config/admin.php文件中logo项和mini-logo项即可     
-3.4 如何修改用户名头像？     
+3.4、如何修改用户名头像？     
 
-    单击右上角头像或者用户名，选择设选项，在里面可以修改用户名和头像，还有密码         
+    单击右上角头像或者用户名，选择设置选项，在里面可以修改用户名和头像以及密码
