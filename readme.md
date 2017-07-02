@@ -82,7 +82,7 @@
 
         127.0.0.1  blog.com //我的项目文件夹名称是blog
 
-hosts文件的路径:C:\Windows\System32\drivers\etc
+hosts文件的路径:C:\Windows\System32\drivers\etc      
 7.2 打开Apache中的vhosts-conf配置文件（我用的是phpStudy），添加：
 
         <VirtualHost blog.com:80> //记得换成你的文件名称和端口号
@@ -97,32 +97,45 @@ hosts文件的路径:C:\Windows\System32\drivers\etc
         blog.com/admin
 8.2、第二种方法：      
 
-    使用php artisan serve开启服务，启动服务后，会在命令行中生成一个端口号，在浏览器打开 http://localhost:生成的端口号/admin/ ,使用
-    用户名 admin 和密码 admin登陆.
+        使用php artisan  serve开启服务，启动服务后，会在命令行中生成一个端口号，在浏览器打开 http://  localhost:生成的端口号/admin
+         ,使用用户名 admin 和密码 admin登陆.
 
 ### 五、如何修改laravel-admin默认样式
 一、修改laravel-admin模板字体图标         
 
-    由于字体图标都有一个为fa的class类名。我们只需要在public/packages/admin/font-awesome/css和vendor/encore/laravel-admin/assets
-    /font-awesome/css文件夹下的css文件中给fa类名下增加一个color属性即可修改所有字体图标的颜色。若是修改某一个字体图标的颜色，我们只需
-    要找到这个字体图标对应的class类名，以同样的方法在其class类名下增加color属性即可。这种方法改动较大，不推荐这种做法。        
-二、在laravel-admin模板中自定义皮肤 
+        由于字体图标都有一个为fa的class类名。我们只需要在public/packages/admin/  font-awesome/css和vendor/encore/laravel-admin
+        /assets/font-awesome/css文件夹下的css文件中给fa类名下增加一个color属性即可修改所有 字体图标的颜色。若是修改某一个字体图标
+        的颜色，我们只需要找到这个字体图标对应的class类名，以同样的方法在其class类名下增加color属性即可。这种方法改动较大，不推荐
+        这种做法。        
+二、在laravel-admin模板中自定义皮肤        
+2.1 首先在public/admin/AdminLTE/dist/css/skins文件夹下新建自己的皮肤文件名，后缀css，把其其中一个皮肤所有的样式copy一份粘贴过来。        
+2.2 把复制来的css文件中所有的皮肤类名全局替换成自己的皮肤类名，如：
 
-    首先在public/admin/AdminLTE/dist/css/skins文件夹下新建自己的皮肤名称，后缀css，在css文件中定义一些class类名的background样式(如：
-    logo、navbar、main-sidebar、sidebar-menu、active、treeview-menu。若是class类名有变，那就打开调试工具查看正确的类名)。然后在
-    config/admin.php中把当前皮肤的名修改成你自己定义的皮肤名。然后刷新，就会发现自定义的皮肤已经生效 
+        我复制的是skin-blue.min.css文件，这个文件的皮肤类名就是skin-blue，我使用全局替换的方法把skin-blue类名替换成skin-myself
+
+2.3 接下来就是设计你想要的样式，如：
+
+        想要修改顶部navbar的背景颜色，只需要找到定义此样式的类名并修改其属性值即可：
+        .skin-myself .main-header .navbar {
+            background-color: #1f262e;
+        }
+        其他样式类名有但不限于logo、main-sidebar、sidebar-menu、active、treew-menu
+
+2.4 如何使你的皮肤生效
+
+        以上步骤完成之后，还需要在config/admin.php文件中把当前皮肤名替换成自己定义的皮肤名。然后刷新，就会发现自定义的皮肤已经生效。 
 三、在laravel-admin中增加自己的样式        
-3.1 给登录页面增加背景图片
+3.1 给登录页面增加背景图片及修改其他样式
 
-    在public/admin/AdminLTE/dist/css文件夹下建立一个css文件，（这里以myCss.css为例，以后我改动的css样式都会放在这里）。打开调试工，
-    我们可以发现定义登录页面背景图片的类名是login-page和register-page类名，所以我们可以这样定义：
-    .login-page, .register-page {
-        background: url(../img/beij.jpg);
-        background-size: cover;
-    }
-    这里我是把背景图片放在了public/admin/AdminLTE/dist/img文件夹下。 
-    到这里还没有结束，我们还要把myCss.css文件引入到index.php和login.php文件中
-    其他样式也是以同样的方法进行定义，若是新定义属性的权重没有模板自带的高，就在属性值后面加上!important
+        在public/admin/AdminLTE/dist/css文件夹下建立一个css文件，（这里以myCss.css为例，以后我改动的css样式都会放在这里）。打
+        开调试工具，我们可以发现定义登录页面背景图片的类名是login-page和register-page类名，所以我们可以这样定义：
+        .login-page, .register-page {
+            background: url(../img/beij.jpg);
+            background-size: cover;
+        }
+        这里我是把背景图片放在了public/admin/AdminLTE/dist/img文件夹下。 
+        到这里还没有结束，我们还要把myCss.css文件引入到index.php和login.php文件中
+        其他样式也是以同样的方法进行定义，若是新定义属性的权重没有模板自带的高，就在属性值后面加上!important
 
 3.2 如何修改模板登录界面的标题？  
 
