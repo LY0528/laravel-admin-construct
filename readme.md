@@ -78,11 +78,11 @@
 
     php artisan admin:install
 7、接下来还需要配置一些文件：         
-7.1、在hosts文件中最后一行添加：
+7.1、在hosts文件中配置虚拟域名，最后一行添加：
 
+    hosts文件的路径:C:\Windows\System32\drivers\etc
     127.0.0.1  blog.com //我的项目文件夹名称是blog
 
-hosts文件的路径:C:\Windows\System32\drivers\etc      
 7.2、打开Apache中的vhosts-conf配置文件（我用的是phpStudy），添加：
 
     <VirtualHost blog.com:80> //记得换成你的文件名称和端口号
@@ -97,16 +97,15 @@ hosts文件的路径:C:\Windows\System32\drivers\etc
     blog.com/admin
 8.2、第二种方法：      
 
-    使用php artisan  serve开启服务，启动服务后，会在命令行中生成一个端口号，在浏览器打开 http://  localhost:生成的端口号/admin
+    使用php artisan  serve开启服务，启动服务后，会在命令行中生成一个端口号，在浏览器打开 http://localhost:生成的端口号/admin
      ,使用用户名 admin 和密码 admin登陆.
 
-### 五、如何修改laravel-admin默认样式
-#### 一、修改laravel-admin模板字体图标         
-
-    由于字体图标都有一个为fa的class类名。我们只需要在public/packages/admin/  font-awesome/css和vendor/encore/laravel-admin
-    /assets/font-awesome/css文件夹下的css文件中给fa类名下增加一个color属性即可修改所有 字体图标的颜色。若是修改某一个字体图标的
-    颜色，我们只需要找到这个字体图标对应的class类名，以同样的方法在其class类名下增加color属性即可。这种方法改动较大，不推荐这种
-    做法。        
+### 五、打造一款属于自己的laravel-admin
+#### 一、修改laravel-admin模板字体图标        
+1.1、 首先需要准备一套属于自己的字体图标库，图标库中定义的类名一定要和模板自带的类名一样。否则，会出现字体图标加载不出来的情况。      
+1.2、 其次在public/admin目录下新建一个存放字体图标库和css样式的文件夹        
+1.3、 接着在index.php和logn.php文件中引入字体图标css样式，记住你的字体图标css样式一定要放在模板自带字体图标css样式之后，只有这样才能覆盖模板自带的样式。
+     
 #### 二、在laravel-admin模板中自定义皮肤        
 2.1、首先在public/admin/AdminLTE/dist/css/skins文件夹下新建自己的皮肤文件名，后缀css，把其其中一个皮肤所有的样式复制一份粘贴过来。        
 2.2、把复制来的css文件中所有的皮肤类名全局替换成自定义的皮肤类名，如：
@@ -115,8 +114,8 @@ hosts文件的路径:C:\Windows\System32\drivers\etc
 
 2.3、接下来定义属于自己的皮肤，如：
 
-    想要修改顶部navbar的背景颜色，只需要找到定义此样式的类名，背景样式是由.skin-myself .main-header .navbar控制；所以只需在其
-    类名下修改属性值即可：
+    若修改顶部navbar的背景颜色，只需要找到定义此样式的类名。通过审查元素发现背景样式是由.skin-myself .main-header .navbar三个类名
+    共同控制；所以只需在其类名下修改属性值即可：
     .skin-myself .main-header .navbar {
         background-color: #1f262e;
     }
