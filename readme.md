@@ -95,6 +95,7 @@
     打开你的phpStudy，启动Apache和MySQL之后，打开浏览器，在浏览器中输入
 
     blog.com/admin
+即可成功登陆。     
 8.2、第二种方法：      
 
     使用php artisan  serve开启服务，启动服务后，会在命令行中生成一个端口号，在浏览器打开 http://localhost:生成的端口号/admin
@@ -102,7 +103,7 @@
 
 ### 五、打造一款属于自己的laravel-admin
 #### 一、修改laravel-admin模板字体图标        
-1.1、 首先需要准备一套属于自己的字体图标库，图标库中定义的类名一定要和模板自带的类名一样。否则，会出现字体图标加载不出来的情况。      
+1.1、 首先需要准备一套属于自己的字体图标库，图标库中定义字体图标的类名一定要和模板自带的类名一样。否则，会出现字体图标加载不出来的情况。      
 1.2、 其次在public/admin目录下新建一个存放字体图标库和css样式的文件夹        
 1.3、 接着在index.php和logn.php文件中引入字体图标css样式，记住你的字体图标css样式一定要放在模板自带字体图标css样式之后，只有这样才能覆盖模板自带的样式。
      
@@ -115,7 +116,7 @@
 2.3、接下来定义属于自己的皮肤，如：
 
     若修改顶部navbar的背景颜色，只需要找到定义此样式的类名。通过审查元素发现背景样式是由.skin-myself .main-header .navbar三个类名
-    共同控制；所以只需在其类名下修改属性值即可：
+    共同控制；所以只需在其类名下重新定义样式即可：
     .skin-myself .main-header .navbar {
         background-color: #1f262e;
     }
@@ -128,16 +129,16 @@
 3.1、给登录页面增加背景图片及修改其他样式
 
     在public/admin/AdminLTE/dist/css文件夹下建立一个新的css文件，（这里以myCss.css为例，改动的css样式都会放在这里）。打开调试
-    工具，可以发现定义登录页面背景图片的类名是login-page和register-page，于是我们可以这样定：
+    工具，可以发现定义登录页面背景图片的类名是login-page和register-page，于是我们可以这样修改：
     .login-page, .register-page {
         background: url(../img/beij.jpg);
         background-size: cover;
     }
-    这里自定义背景图片放在了public/admin/AdminLTE/dist/img文件夹下。 
-    然后，要把myCss.css文件引入到index.php和login.php文件中
+    这里的背景图片是存放在public/admin/AdminLTE/dist/img文件夹下。 
+    然后，剩下的就是把myCss.css文件引入到index.php和login.php文件中
     刷新页面就会发现自定义的背景图片已经生效。
-    其他样式也是以同样的方法定义，若是定义属性不起作用，检查是否由于权重引起的。若是，就在属性值后面加上!important；若不是，可能
-    其样式不是当前的类名控制。具体情况要具体分析。
+    其他样式也是以同样的方法定义，若是定义的属性不起作用，检查原因是否由于权重引起的。若是，就在属性值后面加上!important；若不是，
+    可能其样式不是当前的类名控制。具体情况要具体分析。
 
 3.2、如何修改模板登录界面的标题？  
 
