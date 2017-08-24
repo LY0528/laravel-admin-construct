@@ -105,10 +105,10 @@
 #### 一、修改laravel-admin模板字体图标        
 1.1、 首先需要准备一套属于自己的字体图标库，图标库中定义字体图标的类名一定要和模板自带的类名一样。否则，会出现字体图标加载不出来的情况。      
 1.2、 其次在public/admin目录下新建一个存放字体图标库和css样式的文件夹        
-1.3、 接着在index.php和logn.php文件中引入字体图标css样式，记住你的字体图标css样式一定要放在模板自带字体图标css样式之后，只有这样才能覆盖模板自带的样式。
+1.3、 接着在vendor/encore/laravel-admin/views/index.blade.php和vendor/encore/laravel-admin/views/login.blade.php文件中引入字体图标css样式，记住你的字体图标css样式一定要放在模板自带字体图标css样式之后，只有这样才能覆盖模板自带的样式。
      
 #### 二、在laravel-admin模板中自定义皮肤        
-2.1、首先在public/admin/AdminLTE/dist/css/skins文件夹下新建自己的皮肤文件名，后缀css，把其其中一个皮肤所有的样式复制一份粘贴过来。        
+2.1、首先在public/packages/admin/AdminLTE/dist/css/skins文件夹下新建自己的皮肤文件名，后缀css，把其其中一个皮肤所有的样式复制一份粘贴过来。        
 2.2、把复制来的css文件中所有的皮肤类名全局替换成自定义的皮肤类名，如：
 
     复制的是skin-blue.min.css文件，这个文件的皮肤类名就是skin-blue，然后使用全局替换的方法把skin-blue类名替换成skin-myself
@@ -128,14 +128,14 @@
 #### 三、在laravel-admin中增加自己的样式        
 3.1、给登录页面增加背景图片及修改其他样式
 
-    在public/admin/AdminLTE/dist/css文件夹下建立一个新的css文件，（这里以myCss.css为例，改动的css样式都会放在这里）。打开调试
+    在public/packages/admin/AdminLTE/dist/css文件夹下建立一个新的css文件，（这里以myCss.css为例，改动的css样式都会放在这里）。打开调试
     工具，可以发现定义登录页面背景图片的类名是login-page和register-page，于是我们可以这样修改：
     .login-page, .register-page {
         background: url(../img/beij.jpg);
         background-size: cover;
     }
-    这里的背景图片是存放在public/admin/AdminLTE/dist/img文件夹下。 
-    然后，剩下的就是把myCss.css文件引入到index.php和login.php文件中
+    这里的背景图片是存放在public/packages/admin/AdminLTE/dist/img文件夹下。 
+    然后，剩下的就是把myCss.css文件引入到vendor/encore/laravel-admin/views/index.blade.php和vendor/encore/laravel-admin/views/login.blade.php文件中
     刷新页面就会发现自定义的背景图片已经生效。
     其他样式也是以同样的方法定义，若是定义的属性不起作用，检查原因是否由于权重引起的。若是，就在属性值后面加上!important；若不是，
     可能其样式不是当前的类名控制。具体情况要具体分析。
